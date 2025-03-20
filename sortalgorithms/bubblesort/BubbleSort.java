@@ -3,14 +3,16 @@ public class BubbleSort {
 	public void sort(int[] vector)
 	{
 		int size = vector.length;
-		int aux = 0;
+		int times = 0;
+		int roof = 0;
 		boolean changed = true;
 		
 		show(vector);
 		
 		while(changed) {
 			changed = false;
-			for (int i=0; i < size - 1; i++)
+			roof++;
+			for (int i=0; i < (size - roof);i++, times++)
 			{
 				if (vector[i] > vector[i+1])
 				{
@@ -20,6 +22,8 @@ public class BubbleSort {
 				}
 			}
 		}
+		
+		System.out.printf("\nIterações: %d\n\n", times);
 	}
 	
 	private void swap(int[] vector,int x, int y) {

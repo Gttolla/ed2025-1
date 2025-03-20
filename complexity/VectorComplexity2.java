@@ -19,7 +19,7 @@ public class VectorComplexity2 {
 			 indx++)
         {
             vector[indx] = randInt.nextInt(10000);
-            System.out.println(vector[indx]);//keyboard.nextInt();
+            //System.out.println(vector[indx]);//keyboard.nextInt();
         }
 		
 		

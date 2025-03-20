@@ -31,6 +31,8 @@ public class VectorComplexity3 {
 		
 		System.out.print("\n\n");
 		
+		// https://github.com/tadeumaffeis/ed2025-1.git
+		
 		while (changed)
 		{
 			changed = false;

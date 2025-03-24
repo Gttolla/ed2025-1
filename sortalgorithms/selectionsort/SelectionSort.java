@@ -3,7 +3,8 @@ public class SelectionSort {
 	public void sort(int[] vector)
 	{
 		int size = vector.length;	
-		show(vector);
+		//show(vector);
+		long statedTime = System.nanoTime();
 		
 		for(int indx=0; indx < size - 1; indx++) {
 			for (int indy=indx+1; indy < size;indy++)
@@ -11,10 +12,15 @@ public class SelectionSort {
 				if (vector[indx] > vector[indy])
 				{
 					swap(vector, indx, indy);
-					show(vector, indx, indy);
+					//show(vector, indx, indy);
 				}
 			}
 		}
+		long endedTime = System.nanoTime();
+		long sliceTime = endedTime - statedTime;
+
+        double elapsedTime = sliceTime / 1_000_000.0;
+		System.out.println("Tempo de execução: " + elapsedTime + " ms");// milis
 	}
 	
 	private void swap(int[] vector,int x, int y) {

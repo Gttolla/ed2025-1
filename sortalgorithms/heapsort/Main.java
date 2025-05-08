@@ -48,21 +48,33 @@ public class Main extends JPanel {
     public static void main(String[] args) {
         int vector[] = {10,1,41,53,12,15,33,44,99,116,110,11,9,4,17};
 		int vectorin[] = {10,1,41,53,12,15,33,44,99,116,110,11,9,4,17};
-        JFrame frame = new JFrame("Heap");
+        int vectorsort[] = {10,1,41,53,12,15,33,44,99,116,110,11,9,4,17};
+        JFrame frame = new JFrame("Entrada");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Heap heap = new Heap();
-		heap.maxHeap(0,vector);
-        frame.add(new Main(vector));
+        frame.add(new Main(vectorin));
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 		
-		JFrame framein = new JFrame("Vetor de Entrada");
+		JFrame framein = new JFrame("Heap maximo");
         framein.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        framein.add(new Main(vectorin));
+        Heap heap = new Heap();
+        heap.maxHeap(vector);
+        framein.add(new Main(vector));
         framein.pack();
         framein.setLocationRelativeTo(null);
         framein.setVisible(true);
+
+        JFrame frameHS = new JFrame("Heap Sort");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        HeapSort heapSort = new HeapSort();
+        heapSort.sort(vectorsort);
+        
+        frameHS.add(new Main(vectorsort));
+        frameHS.pack();
+        frameHS.setLocationRelativeTo(null);
+        frameHS.setVisible(true);
     }
 }
 

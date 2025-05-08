@@ -13,18 +13,22 @@ public class Heap {
 		vector[b] = aux;
 	}
 
-	public void maxHeap(int root, int[] vector)
+	public void maxHeap(int[] vector)
 	{
 		double medium = (int) Math.pow(2.0,log2(vector.length)) - 2.0;
 		for (int i = (int)medium; i >= 0; i--)
 		{
-			createMaxHeap(i, vector);
+			createMaxHeap(i, vector, vector.length);
 		}
 	}
 	
-	private void createMaxHeap(int root, int[] vector)
+	public void maxHeap(int root, int[] vector, int size)
 	{
-		int size = vector.length;
+		createMaxHeap(root, vector, size);
+	}
+
+	private void createMaxHeap(int root, int[] vector, int size)
+	{
 		int left = root * 2 + 1;
 		int right = root * 2 + 2;
 		int max = root;
@@ -42,7 +46,7 @@ public class Heap {
 		if (root != max)
 		{
 			swap(vector, root, max);
-			createMaxHeap(max, vector);
+			createMaxHeap(max, vector, size);
 		}
 	}	
 }

@@ -11,7 +11,17 @@ public class HeapSort {
 		int aux = vector[a];
 		vector[a] = vector[b];
 		vector[b] = aux;
+        show(vector);
 	}
+
+    public void show(int[] vector)
+    {
+        for (int i=0; i < vector.length; i++)
+        {
+            System.out.printf("%4d", vector[i]);
+        }
+        System.out.println();
+    }
 
     public void sort(int[] vector)
     {

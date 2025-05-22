@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main extends JPanel {
     private final int[] vetor;
@@ -45,7 +46,25 @@ public class Main extends JPanel {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
+        int[] vector = new int[10];
+        Scanner in = new Scanner(System.in);
+
+        for (int i=0; i < vector.length; i++)
+        {
+            vector[i] = in.nextInt();
+        }
+
+        HeapSort heapSort = new HeapSort();
+        
+        heapSort.show(vector);
+        heapSort.sort(vector);
+        heapSort.show(vector);
+        
+    }
+
+    public static void main1(String[] args) {
         int vector[] = {10,1,41,53,12,15,33,44,99,116,110,11,9,4,17};
 		int vectorin[] = {10,1,41,53,12,15,33,44,99,116,110,11,9,4,17};
         int vectorsort[] = {10,1,41,53,12,15,33,44,99,116,110,11,9,4,17};

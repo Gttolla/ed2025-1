@@ -1,16 +1,27 @@
 
 
 public class Heap {
+	
 	private double log2(double n)
 	{
 		return Math.log(n) / Math.log(2);
 	}
 	
+    public void show(int[] vector)
+    {
+        for (int i=0; i < vector.length; i++)
+        {
+            System.out.printf("%4d", vector[i]);
+        }
+        System.out.println();
+    }
+
 	private void swap(int[] vector, int a, int b)
 	{
 		int aux = vector[a];
 		vector[a] = vector[b];
 		vector[b] = aux;
+		show(vector);
 	}
 
 	public void maxHeap(int[] vector)

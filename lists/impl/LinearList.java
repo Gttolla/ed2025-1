@@ -14,8 +14,7 @@ public class LinearList<T> {
         return descr.getTail();
     }
 
-    public int getSize()
-    {
+    public int getSize() {
         return descr.getSize();
     }
 
@@ -26,28 +25,24 @@ public class LinearList<T> {
     /*
      * Inserção no início da lista linear
      */
-    public void insert(Node<T> node) throws Exception
-    {
+    public void insert(Node<T> node) throws Exception {
         /*
          * Nó nulo
          */
-        if (node == null)
-        {
+        if (node == null) {
             throw new Exception("Node is null");
         }
 
-        if (descr.isEmpty())
-        {
+        if (descr.isEmpty()) {
             /*
-            * Lista vazia
-            */
+             * Lista vazia
+             */
             descr.setHead(node);
             descr.setTail(node);
-        }
-        else {
+        } else {
             /*
-            * Lista nã0 vazia
-            */
+             * Lista nã0 vazia
+             */
             Node head = descr.getHead();
             node.setNext(head);
             head.setPrev(node);
@@ -64,26 +59,21 @@ public class LinearList<T> {
      * Inserir no final da lista linear
      */
 
-     public void append(Node<T> node) throws Exception
-     {
-                /*
+    public void append(Node<T> node) throws Exception {
+        /*
          * Nó nulo
          */
-        if (node == null)
-        {
+        if (node == null) {
             throw new Exception("Node is null");
         }
 
-        if (descr.isEmpty())
-        {
+        if (descr.isEmpty()) {
             /*
-            * Lista vazia
-            */
+             * Lista vazia
+             */
             descr.setHead(node);
             descr.setTail(node);
-        }
-        else
-        {
+        } else {
             Node tail = descr.getTail();
             tail.setNext(node);
             node.setPrev(tail);
@@ -94,5 +84,31 @@ public class LinearList<T> {
          * Aumenta o tamanho da lista
          */
         descr.setSize(descr.getSize() + 1);
-     }
+    }
+
+    /*
+     * Remover do início da Lista linear
+     */
+
+    public Node<T> remove() {
+        if (descr.isEmpty()) {
+            return null;
+        }
+
+        Node node = descr.getHead();
+        descr.setHead(node.getNext());
+
+        if (descr.getHead() == null) {
+            descr.setTail(descr.getHead());
+        } else {
+            descr.getHead().setPrev(null);
+        }
+
+        node.setPrev(null);
+        node.setNext(null);
+
+        descr.setSize(descr.getSize() - 1);
+
+        return node;
+    }
 }

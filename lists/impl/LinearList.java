@@ -111,4 +111,29 @@ public class LinearList<T> {
 
         return node;
     }
+
+    public Node<T> pop() {
+        if (descr.isEmpty()) {
+            return null;
+        }
+
+        Node<T> node = descr.getTail();
+        Node<T> prevNode = node.getPrev();
+
+        if (prevNode == null) {
+            // Só há um elemento na lista
+            descr.setHead(null);
+            descr.setTail(null);
+        } else {
+            prevNode.setNext(null);
+            descr.setTail(prevNode);
+        }
+
+        node.setNext(null);
+        node.setPrev(null);
+
+        descr.setSize(descr.getSize() - 1);
+
+        return node;
+    }
 }

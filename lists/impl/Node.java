@@ -2,13 +2,13 @@
 public class Node<T> {
     private Node<T> prev;
     private Node<T> next;
-    private T info;
+    private Info<T> info;
 
     public Node() {
         this.next = this.prev = null;
     }
 
-    public Node(T info) {
+    public Node(Info<T> info) {
         this.info = info;
         this.next = this.prev = null;
     }
@@ -32,11 +32,11 @@ public class Node<T> {
     }
 
     // Getter e Setter para info
-    public T getInfo() {
+    public Info<T> getInfo() {
         return info;
     }
 
-    public void setInfo(T info)
+    public void setInfo(Info<T> info)
     {
         this.info = info;
     }

@@ -1,13 +1,13 @@
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        LinearList ll = new LinearList<>();
+        LinearList<String> ll = new LinearList<String>();
         try {
             for (int n = 0; n < 5; n++) {
-                ll.insert(new Node(n * 10 + n));
+                ll.insert(new Node(new Info(n,Integer.toHexString(n * 10 + n))));
             }
             for (int n = 5; n < 10; n++) {
-                ll.append(new Node(n * 10 + n));
+                ll.append(new Node(new Info(n,Integer.toHexString(n * 10 + n))));
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -19,12 +19,12 @@ public class Main {
         }
 
         for (int i = 0; i < 10; i++) {
-            Node node = ll.remove();
+            Node node = ll.pop();
             System.out.println("Info: " + node.getInfo());
             try {
                 show(ll);
             } catch (Exception ex) {
-                break;
+                System.exit(0);
             }
         }
 
@@ -43,12 +43,12 @@ public class Main {
         Node aux = !ll.isEmpty() ? ll.getHead() : null;
 
         while (aux != null) {
-            System.out.printf("[%4d]->", aux.getInfo());
+            System.out.printf("[%s]->", aux.getInfo().toString());
             aux = aux.getNext();
         }
         System.out.println("/");
-        System.out.println("\nInicio -> " + ll.getHead().getInfo());
-        System.out.println("\nTail -> " + ll.getTail().getInfo());
+        System.out.println("\nInicio -> " + ll.getHead().getInfo().toString());
+        System.out.println("\nTail -> " + ll.getTail().getInfo().toString());
         System.out.println("\nSize -> " + ll.getSize());
     }
 }

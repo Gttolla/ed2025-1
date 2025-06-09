@@ -138,127 +138,135 @@ public class LinearList<T> {
     }
 
     public void insertAt(Node<T> node, int pos) throws Exception {
-    if (node == null) throw new Exception("Node is null");
-    if (pos < 0 || pos > descr.getSize()) throw new Exception("Invalid position");
+        if (node == null)
+            throw new Exception("Node is null");
+        if (pos < 0 || pos > descr.getSize())
+            throw new Exception("Invalid position");
 
-    if (pos == 0) {
-        insert(node);
-    } else if (pos == descr.getSize()) {
-        append(node);
-    } else {
+        if (pos == 0) {
+            insert(node);
+        } else if (pos == descr.getSize()) {
+            append(node);
+        } else {
+            Node<T> current = descr.getHead();
+            for (int i = 0; i < pos - 1; i++) {
+                current = current.getNext();
+            }
+
+            Node<T> prev = current.getPrev();
+            prev.setNext(node);
+            node.setPrev(prev);
+
+            node.setNext(current);
+            current.setPrev(node);
+
+            descr.setSize(descr.getSize() + 1);
+        }
+    }
+
+    public Node<T> removeFrom(int pos) throws Exception {
+        if (pos < 0 || pos >= descr.getSize())
+            throw new Exception("Invalid position");
+
+        if (pos == 0)
+            return remove();
+        if (pos == descr.getSize() - 1)
+            return pop();
+
         Node<T> current = descr.getHead();
-        for (int i = 0; i < pos; i++) {
+        for (int i = 0; i < pos - 1; i++) {
             current = current.getNext();
         }
 
         Node<T> prev = current.getPrev();
-        prev.setNext(node);
-        node.setPrev(prev);
+        Node<T> next = current.getNext();
 
-        node.setNext(current);
-        current.setPrev(node);
+        prev.setNext(next);
+        next.setPrev(prev);
+
+        current.setNext(null);
+        current.setPrev(null);
+
+        descr.setSize(descr.getSize() - 1);
+        return current;
+    }
+
+    public void insertNext(Node<T> node, Node<T> nodePos) throws Exception {
+        if (node == null || nodePos == null)
+            throw new Exception("Node is null");
+
+        Node<T> next = nodePos.getNext();
+        nodePos.setNext(node);
+        node.setPrev(nodePos);
+
+        if (next != null) {
+            node.setNext(next);
+            next.setPrev(node);
+        } else {
+            descr.setTail(node); // Inserção no final
+        }
 
         descr.setSize(descr.getSize() + 1);
     }
-}
 
-public Node<T> removeFrom(int pos) throws Exception {
-    if (pos < 0 || pos >= descr.getSize()) throw new Exception("Invalid position");
+    public Node<T> removeNext(Node<T> nodePos) throws Exception {
+        if (nodePos == null || nodePos.getNext() == null)
+            throw new Exception("No next node to remove");
 
-    if (pos == 0) return remove();
-    if (pos == descr.getSize() - 1) return pop();
+        Node<T> node = nodePos.getNext();
+        Node<T> next = node.getNext();
 
-    Node<T> current = descr.getHead();
-    for (int i = 0; i < pos; i++) {
-        current = current.getNext();
+        nodePos.setNext(next);
+        if (next != null) {
+            next.setPrev(nodePos);
+        } else {
+            descr.setTail(nodePos); // Remoção do último
+        }
+
+        node.setNext(null);
+        node.setPrev(null);
+
+        descr.setSize(descr.getSize() - 1);
+        return node;
     }
 
-    Node<T> prev = current.getPrev();
-    Node<T> next = current.getNext();
+    public void insertPrev(Node<T> node, Node<T> nodePos) throws Exception {
+        if (node == null || nodePos == null)
+            throw new Exception("Node is null");
 
-    prev.setNext(next);
-    next.setPrev(prev);
+        Node<T> prev = nodePos.getPrev();
+        node.setNext(nodePos);
+        nodePos.setPrev(node);
 
-    current.setNext(null);
-    current.setPrev(null);
+        if (prev != null) {
+            prev.setNext(node);
+            node.setPrev(prev);
+        } else {
+            descr.setHead(node); // Inserção no início
+        }
 
-    descr.setSize(descr.getSize() - 1);
-    return current;
-}
-
-
-public void insertNext(Node<T> node, Node<T> nodePos) throws Exception {
-    if (node == null || nodePos == null) throw new Exception("Node is null");
-
-    Node<T> next = nodePos.getNext();
-    nodePos.setNext(node);
-    node.setPrev(nodePos);
-
-    if (next != null) {
-        node.setNext(next);
-        next.setPrev(node);
-    } else {
-        descr.setTail(node); // Inserção no final
+        descr.setSize(descr.getSize() + 1);
     }
 
-    descr.setSize(descr.getSize() + 1);
-}
+    public Node<T> removePrev(Node<T> nodePos) throws Exception {
+        if (nodePos == null || nodePos.getPrev() == null)
+            throw new Exception("No previous node to remove");
 
-public Node<T> removeNext(Node<T> nodePos) throws Exception {
-    if (nodePos == null || nodePos.getNext() == null) throw new Exception("No next node to remove");
+        Node<T> node = nodePos.getPrev();
+        Node<T> prev = node.getPrev();
 
-    Node<T> node = nodePos.getNext();
-    Node<T> next = node.getNext();
+        nodePos.setPrev(prev);
+        if (prev != null) {
+            prev.setNext(nodePos);
+        } else {
+            descr.setHead(nodePos); // Remoção do primeiro
+        }
 
-    nodePos.setNext(next);
-    if (next != null) {
-        next.setPrev(nodePos);
-    } else {
-        descr.setTail(nodePos); // Remoção do último
+        node.setNext(null);
+        node.setPrev(null);
+
+        descr.setSize(descr.getSize() - 1);
+        return node;
     }
-
-    node.setNext(null);
-    node.setPrev(null);
-
-    descr.setSize(descr.getSize() - 1);
-    return node;
-}
-
-public void insertPrev(Node<T> node, Node<T> nodePos) throws Exception {
-    if (node == null || nodePos == null) throw new Exception("Node is null");
-
-    Node<T> prev = nodePos.getPrev();
-    node.setNext(nodePos);
-    nodePos.setPrev(node);
-
-    if (prev != null) {
-        prev.setNext(node);
-        node.setPrev(prev);
-    } else {
-        descr.setHead(node); // Inserção no início
-    }
-
-    descr.setSize(descr.getSize() + 1);
-}
-
-public Node<T> removePrev(Node<T> nodePos) throws Exception {
-    if (nodePos == null || nodePos.getPrev() == null) throw new Exception("No previous node to remove");
-
-    Node<T> node = nodePos.getPrev();
-    Node<T> prev = node.getPrev();
-
-    nodePos.setPrev(prev);
-    if (prev != null) {
-        prev.setNext(nodePos);
-    } else {
-        descr.setHead(nodePos); // Remoção do primeiro
-    }
-
-    node.setNext(null);
-    node.setPrev(null);
-
-    descr.setSize(descr.getSize() - 1);
-    return node;
-}
 
 }

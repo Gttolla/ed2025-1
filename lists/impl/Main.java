@@ -4,10 +4,10 @@ public class Main {
         LinearList<String> ll = new LinearList<String>();
         try {
             for (int n = 0; n < 5; n++) {
-                ll.insert(new Node(new Info(n,Integer.toHexString(n * 10 + n))));
+                ll.insert(new Node(new Info(n,Integer.toString(n * 10 + n))));
             }
             for (int n = 5; n < 10; n++) {
-                ll.append(new Node(new Info(n,Integer.toHexString(n * 10 + n))));
+                ll.append(new Node(new Info(n,Integer.toString(n * 10 + n))));
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -18,15 +18,7 @@ public class Main {
             System.exit(-1);
         }
 
-        for (int i = 0; i < 10; i++) {
-            Node node = ll.pop();
-            System.out.println("Info: " + node.getInfo());
-            try {
-                show(ll);
-            } catch (Exception ex) {
-                System.exit(0);
-            }
-        }
+        ll.insertAt(new Node(new Info(100,Integer.toString(100))), 4);
 
         try {
             show(ll);

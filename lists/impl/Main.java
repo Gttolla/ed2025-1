@@ -1,7 +1,18 @@
 
 public class Main {
 
-public static void main2(String[] args)
+    public static void main(String[] args)
+    {
+        Exercicio04 e = new Exercicio04();
+        try {
+            e.exec();
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+    public static void main2(String[] args)
     {
         QueueImpl<String> queue = new QueueImpl<>();
 
@@ -30,7 +41,7 @@ public static void main2(String[] args)
         
     }
 
-    public static void main(String[] args)
+    public static void main3(String[] args)
     {
         StackImpl<String> stack = new StackImpl<>();
 

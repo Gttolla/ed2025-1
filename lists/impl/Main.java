@@ -3,7 +3,7 @@ public class Main {
 
     public static void main(String[] args)
     {
-        Exercicio04 e = new Exercicio04();
+        Exercicio05 e = new Exercicio05();
         try {
             e.exec();
         }
@@ -12,6 +12,8 @@ public class Main {
             ex.printStackTrace();
         }
     }
+	
+	
     public static void main2(String[] args)
     {
         QueueImpl<String> queue = new QueueImpl<>();

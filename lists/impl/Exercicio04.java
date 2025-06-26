@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Exercicio04 {
     public void exec() throws Exception
     {
-        StackImpl operandos = new StackImpl<>();
+        StackImpl operandos = new StackImpl<Integer>();
         StackImpl operacao = new StackImpl<>();
         QueueImpl expressao = new QueueImpl<>();
 
@@ -42,7 +42,9 @@ public class Exercicio04 {
                 case '8' :
                 case '9' :
                 {
-                    operandos.push(e);
+					char caractere = (char) e.getInfo().getInfo();
+					int numero = caractere - '0';	
+                    operandos.push(new Node(new Info(numero, numero)));
                     break;
                 }
             }
@@ -53,11 +55,11 @@ public class Exercicio04 {
                 char op = (char) operacao.pop().getInfo().getInfo();
                 if (op == '+')
                 {
-                    n1 += n2;
+                    n1 = n2 + n1;
                 }
                 else // op == '-'
                 {
-                    n1 -= n2;
+                    n1 = n2 - n1;
                 }
                 operandos.push(new Node(new Info(n1, n1)));
             }
